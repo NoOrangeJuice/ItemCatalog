@@ -1,0 +1,18 @@
+Calvin Julian Ellington
+Tournament database final project.
+
+--Requirements
+  *VirtualBox
+  *Vagrant
+
+Open terminal
+Navigate to the /vagrant directory
+Type "vagrant up" into the command line
+Once the VM has finished booting type "vagrant SSH" to access the VM
+Once inside navigate to the /vagrant/tournament directory
+Type "psql" to initialize the PostgreSQL CLI
+Type "\i tournament.sql" to establish the databse
+press ctrl + D to exit the psql CLI
+type "python tournament_test.py"to run the automated testing script.
+
+To view my code simple type nano "tournament.py" in the vagrant terminal
