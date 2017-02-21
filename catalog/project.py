@@ -320,7 +320,7 @@ def menuItemJSON(restaurant_id, menuitem_id):
     return jsonify(MenuItem=menuitem.serialize)
 
 @app.route('/restuarant/<int:restaurant_id>/JSON')
-def restuarantJSON(restaurant_id):
+def restaurantJSON(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     return jsonify(Restaurant=restaurant.serialize)
 
