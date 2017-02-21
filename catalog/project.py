@@ -314,12 +314,12 @@ def restaurantMenuJSON(restaurant_id):
     menuitems = session.query(MenuItem).filter_by(restaurant_id=restaurant_id).all()
     return jsonify(MenuItem=[menuitem.serialize for menuitem in menuitems])
 
-@app.route('/restuarant/<int:restaurant_id>/menu/<int:menuitem_id>/JSON')
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:menuitem_id>/JSON')
 def menuItemJSON(restaurant_id, menuitem_id):
     menuitem = session.query(MenuItem).filter_by(id=menuitem_id).one()
     return jsonify(MenuItem=menuitem.serialize)
 
-@app.route('/restuarant/<int:restaurant_id>/JSON')
+@app.route('/restaurant/<int:restaurant_id>/JSON')
 def restaurantJSON(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     return jsonify(Restaurant=restaurant.serialize)
