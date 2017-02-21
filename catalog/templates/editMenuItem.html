@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="six columns">
+    <form action="{{ url_for('editMenuItem', menuitem_id = menuitem.id, restaurant_id = restaurant.id) }}" method="post">
+      <div class="six columns">
+        <div class="six columns">
+          Menu Item ID : {{ menuitem.id  }}
+          <br>
+          Menu Item Name : {{ menuitem.name }}
+          <br>
+          Menu Item Description : {{ menuitem.description }}
+          <br>
+          Menu Item Price : {{ menuitem.price }}
+          <br>
+        </div>
+        <br>
+        <div class="twelve columns">
+          <div class="eight columns">
+            <label for="newItemName">New item name</label>
+            <input type="text" id="newname" class="form" name="name" placeholder="Enter new name here">
+            <br>
+          </div>
+          <div class="eight columns">
+            <label for="newItemDescription">New item Description</label>
+            <input type="text" id="newdescription" class="form" name="description" placeholder="Enter new description here">
+            <br>
+          </div>
+          <div class="eight columns">
+            <label for="newItemPrice">New item Price</label>
+            <input type="text" id="newprice" class="form" name="price" placeholder="Enter new price here">
+            <br>
+          </div>
+        </div>
+        <div class="six columns">
+          <button type="submit" class="button">Edit</button>
+          <a href="{{ url_for('showMenu', restaurant_id=menuitem.restaurant_id) }}" class="button">Cancel</a>
+          <br>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

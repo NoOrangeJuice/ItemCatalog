@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="twelve columns">
+  New Restaurant.
+</div>
+
+<div class="row">
+  <div class="six columns">
+    <form action="{{ url_for('newRestaurant') }}" method="POST">
+      <div class="row">
+        <div class="six columns">
+          <label for="Restaurant Name">Restaurant Name</label>
+          <input class="u-full-width" placeholder="New Restaurant" name="name" type="text">
+        </div>
+        <div class="six columns">
+          <input class="button" value="Create" type="submit">
+          <a class="button" href="{{ url_for('showRestaurants') }}">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="six columns">
+    <form action="{{ url_for('editRestaurant', restaurant_id = restaurant.id ) }}" method="post">
+      <div class="six columns">
+        <div class="six columns">
+          Restaurant ID : {{ restaurant.id  }}
+          <br>
+          Restaurant Name : {{ restaurant.name }}
+          <br>
+        </div>
+        <br>
+        <div class="six columns">
+          <div class="six columns">
+            <label for="newResName">New Restaurant name</label>
+            <input type="text" id="newname" class="form" name="newname" placeholder="Enter new name here">
+            <br>
+          </div>
+        </div>
+        <div class="six columns">
+          <button type="submit" class="button">Edit</button>
+          <a href="{{ url_for('showRestaurants') }}" class="button">Cancel</a>
+          <br>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

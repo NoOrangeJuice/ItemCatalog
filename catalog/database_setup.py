@@ -1,32 +1,29 @@
 import os
-
 import sys
-
 from sqlalchemy import Column, ForeignKey, Integer, String
-
 from sqlalchemy.ext.declarative import declarative_base
-
 from sqlalchemy.orm import relationship
-
 from sqlalchemy import create_engine
 
 Base = declarative_base()
 
 
-# User data
+### User data. ###
 class User(Base):
-	__tablename__ = 'user'
+    __tablename__ = 'user'
 
-	id = Column(Integer, primary_key=True)
-	email = Column(String(250), unique=True, nullable=False)
-	name = Column(String(250), nullable=True)
-
-# Item Categories
-class Category(Base):
-    __tablename__ = 'category'
-    
     id = Column(Integer, primary_key=True)
-    cname = Column(String(80), nullable=False)
+    name = Column(String(250), nullable=False)
+    email = Column(String(250), nullable=False)
+    picture = Column(String(250))
+
+
+### Item Categories. ###
+class Restaurant(Base):
+    __tablename__ = 'restaurant'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
@@ -37,16 +34,17 @@ class Category(Base):
     	    'name' : self.name,
     	}
 
-# Items
-class Item(Base):
+### Items. ###
+class MenuItem(Base):
 
-    __tablename__ = 'item'
+    __tablename__ = 'menuitem'
 
-    iname = Column(String(80), nullable=False)
+    name = Column(String(80), nullable=False)
     id = Column(Integer, primary_key=True)
     description = Column(String(250))
-    category_id = Column(Integer, ForeignKey('category.id'))
-    category = relationship(Category)
+    price = Column(String(10))
+    restaurant_id = Column(Integer, ForeignKey('restaurant.id'))
+    restaurant = relationship(Restaurant)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
@@ -56,11 +54,11 @@ class Item(Base):
     	    'id' : self.id,
     	    'name' : self.name,
     	    'description' : self.description,
-    	    'category_id' : self.category_id,
+			'price' : self.price,
+    	    'restaurant_id' : self.restaurant_id,
     	}
 
-# Engine
-engine = create_engine('sqlite:///catalog.db')
+### Engine. ###
+engine = create_engine('sqlite:///restaurantmenu.db')
 
 Base.metadata.create_all(engine)
-

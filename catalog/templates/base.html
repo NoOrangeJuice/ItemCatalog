@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">
+  <title> - Restaurant Catalog </title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <a href="{{ url_for('showLogin') }}" class="button">Login</a>
+        <a href="{{ url_for('gdisconnect') }}" class="button">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
