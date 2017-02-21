@@ -305,19 +305,24 @@ def showMenu(restaurant_id):
 ### API Endpoints. ###
 @app.route('/restaurant/JSON')
 def restaurantsJSON():
-    rJSON = session.query(Restaurant).all()
-    return jsonify(rJSON=[r.serialize for r in restaurants])
+    restaurants = session.query(Restaurant).all()
+    return jsonify(Restaurant=[restaurant.serialize for restaurant in restaurants])
 
 @app.route('/restaurant/<int:restaurant_id>/menu/JSON')
 def restaurantMenuJSON(restaurant_id):
-    rmJSON = session.query(Restaurant).filter_by(id=restaurant_id).one()
-    menuitem = sesion.query(MenuItem).filter_by(restaurant_id=restaurant_id).all()
-    return jsonify(MenuItem=MenuItem.serialize)
+    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    menuitems = session.query(MenuItem).filter_by(restaurant_id=restaurant_id).all()
+    return jsonify(MenuItem=[menuitem.serialize for menuitem in menuitems])
 
 @app.route('/restuarant/<int:restaurant_id>/menu/<int:menuitem_id>/JSON')
 def menuItemJSON(restaurant_id, menuitem_id):
     menuitem = session.query(MenuItem).filter_by(id=menuitem_id).one()
-    return jsonify(MenuItem=MenuItem.serialize)
+    return jsonify(MenuItem=menuitem.serialize)
+
+@app.route('/restuarant/<int:restaurant_id>/JSON')
+def restuarantJSON(restaurant_id):
+    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    return jsonify(Restaurant=restaurant.serialize)
 
 if __name__ == '__main__':
     app.debug = True

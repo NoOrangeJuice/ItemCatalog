@@ -9,14 +9,20 @@
   <div class="container">
     <div class="row">
       <div class="twelve columns">
-        <a href="{{ url_for('showLogin') }}" class="button">Login</a>
-        <a href="{{ url_for('gdisconnect') }}" class="button">Logout</a>
+        <ul class="navbar-left">
+  {% if 'username' not in session %}
+    <a class="button" href="{{ url_for('showLogin') }}">Login</a>
+  {% else %}
+    <li><p class="text">{{ session.username }}</p></li>
+    <a class="button" href="{{ url_for('gdisconnect') }}">Logout</a>
+  {% endif %}
+        </ul>
       </div>
     </div>
   </div>
 
   <div class="container">
-    {% block content %}{% endblock %}
+  {% block content %}{% endblock %}
   </div>
 </body>
 </html>
