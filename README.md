@@ -1,5 +1,5 @@
 # itemcatalog
-Item catalog project for Udacity
+Item catalog project for Udacity. This application allows users create a catalog of restaurants, and food items for their restuarants. Users may login using Google's Oauth and may only edit/delete their own submissions. Application is currently being hosted on an Ubuntu Lightsail instance which can be found here: http://34.195.88.228/
 <hr>
 <h3>Requirements</h3>
   <ul>
